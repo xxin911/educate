@@ -3,7 +3,7 @@ from flask import request, jsonify
 from ..zf_educate import sign_in
 
 
-@api.route('/zf')
+@api.route('/zf', methods=['POST'])
 def zf():
     if request.method == 'POST':
         url = request.form.get('url')
