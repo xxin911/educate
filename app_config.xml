@@ -1,0 +1,9 @@
+<uwsgi>
+    <pythonpath>/home/wwwroot/educate</pythonpath>
+    <module>manage</module>
+    <callable>app</callable>
+    <socket>127.0.0.1:3034</socket>
+    <master />
+    <processes>5</processes>
+    <memory-report />
+</uwsgi>
