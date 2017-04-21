@@ -32,7 +32,7 @@ def get_view_state(url, cookies):
 
 
 def post_data(url, number, password, txt_secret_code, cookies):
-    radio_button_list1 = '\321\247\311\372'
+    radio_button_list1 = '学生'
     __VIEWSTATE = get_view_state(url, cookies)
     data = {
         '__VIEWSTATE': __VIEWSTATE,
@@ -57,17 +57,28 @@ def get_info(url, number, cookies):
 
     soup = BeautifulSoup(info_body, 'html.parser')
 
+    name_html = soup.select('#xm')
+    brithday_html = soup.select('#lbl_csrq')
+    department_html = soup.select('#lbl_xy')
+    major_html = soup.select('#lbl_zymc')
+    class_html = soup.select('#lbl_xzb')
+    cid_html = soup.select('#lbl_sfzh')
+    grade_html = soup.select('#lbl_dqszj')
+    province_html = soup.select('#lbl_lys')
+    native_place_html = soup.select('#lbl_jg')
+    gender_html = soup.select('#lbl_xb')
+
     information = {
-        'name': soup.select('#xm')[0].string,
-        'brithday': soup.select('#lbl_csrq')[0].string,
-        'department': soup.select('#lbl_xy')[0].string,
-        'major': soup.select('#lbl_zymc')[0].string,
-        'class': soup.select('#lbl_xzb')[0].string,
-        'cid': soup.select('#lbl_sfzh')[0].string,
-        'grade': soup.select('#lbl_dqszj')[0].string,
-        'province': soup.select('#lbl_lys')[0].string,
-        'native_place': soup.select('#lbl_jg')[0].string,
-        'gender': soup.select('#lbl_xb')[0].string
+        'name': name_html[0].string if name_html else None,
+        'brithday': brithday_html[0].string if brithday_html else None,
+        'department': department_html[0].string if department_html else None,
+        'major': major_html[0].string if major_html else None,
+        'class': class_html[0].string if class_html else None,
+        'cid': cid_html[0].string if cid_html else None,
+        'grade': grade_html[0].string if grade_html else None,
+        'province': province_html[0].string if province_html else None,
+        'native_place': native_place_html[0].string if native_place_html else None,
+        'gender': gender_html[0].string if gender_html else None
 
     }
     return information
